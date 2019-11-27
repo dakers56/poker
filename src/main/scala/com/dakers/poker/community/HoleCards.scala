@@ -1,4 +1,4 @@
-package com.dakers.poker
+package com.dakers.poker.community
 
 import com.dakers.cards.Card
 
