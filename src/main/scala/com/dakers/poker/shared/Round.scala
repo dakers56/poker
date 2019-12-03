@@ -1,21 +1,29 @@
 package com.dakers.poker.shared
 
+import com.dakers.cards.Card
+
 /**
  * Defines a round of betting.
- *
- * @param name Name of the round - e.g "Flop", "Third Street"
  */
-abstract class RoundDefinition(val name: String)
+trait Round {
+  val name: String
+}
+
+/**
+ * Trait representing the cards that are part of a round of betting.
+ */
+trait Cards {
+  def cards(): Seq[Card]
+}
 
 /** Used for betting rounds like the flop where more cards go down.
  *
- * @param name   name of the round -e.g, "flop", "third street"
- * @param nCards number of cards that are added as part of the round
+ * @param name name of the round -e.g, "flop", "third street"
  */
-class RoundWithCardsDefinition(name: String, val nCards: Int) extends RoundDefinition(name)
+class RoundWithCards(val name: String, val cards: Card*) extends Round with Cards
 
 /** Used for betting rounds like pre-flop where no cards go down.
  *
  * @param name name of the round -e.g, "Pre-Flop"
  */
-class RoundWithoutCardsDefinition(name: String) extends RoundDefinition(name)
+class RoundWithoutCardsDefinition(val name: String) extends Round
