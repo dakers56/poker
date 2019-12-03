@@ -20,9 +20,9 @@ trait Incomplete {
 
 
 /**
- * All cards of a "complete" starting hand are known, so it should implement [[Hand.cards()]] as a val.
+ * All cards of a "complete" hand are known, so it should implement [[Hand.cards()]] as a val.
  *
  * @param cards The cards in this starting hand.
  */
-case class CompleteStartingHand(cards: Set[Card]) extends Hand
+case class CompleteHand(cards: Set[Card]) extends Hand
 
