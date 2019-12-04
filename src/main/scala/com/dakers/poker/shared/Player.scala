@@ -1,10 +1,10 @@
 package com.dakers.poker.shared
 
 /**
- * Base trait for players of an arbitrary game. Only includes an identifier because different implementations may have different
+ * Base class for players of an arbitrary game. Only includes an identifier because different implementations may have different
  * needs depending on the context which can be filled be stacking other traits in this file.
  */
-trait Player {
+abstract class Player {
   val name: String
 }
 
@@ -20,4 +20,9 @@ trait Stack {
  */
 trait StartingHand {
   def startingHand: Hand
+}
+
+trait Action {
+  this : Player with Stack =>
+  def perform
 }
