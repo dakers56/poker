@@ -3,9 +3,7 @@ package com.dakers.poker.shared
 /**
  * Base class for players of an arbitrary game. Players always have some sort of hand.
  */
-abstract class Player {
-  def hand: Hand
-
+abstract class Player extends Hand {
   def id: String
 }
 
