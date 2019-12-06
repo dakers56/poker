@@ -1,18 +1,12 @@
 package com.dakers.poker.shared
 
 /**
- * Base class for players of an arbitrary game. Only includes an identifier because different implementations may have different
- * needs depending on the context which can be filled be stacking other traits in this file.
+ * Base class for players of an arbitrary game. Players always have some sort of hand.
  */
 abstract class Player {
-  val name: String
-}
+  def hand: Hand
 
-/**
- * Trait representing the number of chips that a player has.
- */
-trait Stack {
-  var stack = 0
+  def id: String
 }
 
 /**
@@ -30,25 +24,20 @@ trait BettingActions {
 
 /**
  * Represents a bet made by a player.
+ *
  * @param amount size of bet
  */
-case class Bet(amount: Int) {
-  this: Player with Stack =>
-}
+case class Bet(amount: Int)
 
 /**
  * Represents a check by a player. Object because a "check" has no state.
  */
-case object Check {
-  this: Player with Stack =>
-}
+case object Check
 
 /**
  * Represents a fold by a player. Object because a "fold" has no state.
  */
-case object Fold {
-  this: Player with Stack =>
-}
+case object Fold
 
 
 /**
