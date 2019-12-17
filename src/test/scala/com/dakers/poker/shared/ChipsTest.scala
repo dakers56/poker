@@ -24,7 +24,7 @@ class ChipsTest extends FlatSpec with Matchers {
 
   "Adding " + chipsToAddToStack + " to a stack that had " + initialStackSize + " chips in it " should " yield a stack with " + finalStackSizeAdd + " chips in it" in {
     val origStack = Stack(initialStackSize)
-    val finalStack = origStack.add(chipsToAddToStack)
+    val finalStack = origStack.add(chipsToAddToStack).get
     finalStack.amt shouldBe finalStackSizeAdd
   }
 
@@ -32,7 +32,7 @@ class ChipsTest extends FlatSpec with Matchers {
   val finalStackSizeRem: Double = initialStackSize - chipsToRem
   "Removing " + chipsToRem + " chips from a stack that had " + initialStackSize + " chips in it " should " yield a stack with " + finalStackSizeRem + " chips in it" in {
     val origStack = Stack(initialStackSize)
-    val finalStack = origStack.rem(chipsToRem)
+    val finalStack = origStack.rem(chipsToRem).get
     finalStack.amt shouldBe finalStackSizeRem
   }
 
@@ -42,7 +42,7 @@ class ChipsTest extends FlatSpec with Matchers {
 
   "Adding " + chipsToAddToPot + " to a pot that had " + initialPotSize + " chips in it " should " yield a pot with " + finalPotSizeAdd + " chips in it" in {
     val origPot = Stack(initialPotSize)
-    val finalPot = origPot.add(chipsToAddToPot)
+    val finalPot = origPot.add(chipsToAddToPot).get
     finalPot.amt shouldBe finalPotSizeAdd
   }
 
@@ -51,7 +51,7 @@ class ChipsTest extends FlatSpec with Matchers {
 
   "Removing " + chipsToRemoveFromPot + " to a pot that had " + initialPotSize + " chips in it " should " yield a pot with " + finalPotSizeRem + " chips in it" in {
     val origPot = Stack(initialPotSize)
-    val finalPot = origPot.add(chipsToAddToPot)
+    val finalPot = origPot.add(chipsToAddToPot).get
     finalPot.amt shouldBe finalPotSizeAdd
   }
 

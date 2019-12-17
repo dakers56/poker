@@ -1,5 +1,7 @@
 package com.dakers.poker.shared
 
+import scala.util.Try
+
 /**
  * Represents a pile of chips. Used for a player's stack and the hand's pot.
  */
@@ -29,7 +31,12 @@ object Pot {
  */
 sealed trait Add {
   this: Chips =>
-  def add(toAdd: Double) = Chips(amt + toAdd)
+  def add(toAdd: Double): Try[Chips] = {
+    if (toAdd < 0) {
+      throw new RuntimeException("Cannot add " + toAdd + " chips. Must add a positive number of chips.")
+    }
+    Try(Chips(amt + toAdd))
+  }
 }
 
 /**
@@ -37,7 +44,12 @@ sealed trait Add {
  */
 sealed trait Remove {
   this: Chips =>
-  def rem(toRem: Double) = Chips(amt - toRem)
+  def rem(toRem: Double): Try[Chips] = {
+    if (toRem < 0) {
+      throw new RuntimeException("Cannot remove " + toRem + " chips. Must remove a positive number of chips.")
+    }
+    Try(Chips(amt - toRem))
+  }
 }
 
 
