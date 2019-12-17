@@ -55,4 +55,26 @@ class ChipsTest extends FlatSpec with Matchers {
     finalPot.amt shouldBe finalPotSizeAdd
   }
 
+  def addErrorMessage(amt: Double) = "Cannot add " + amt + " chips. Must add a positive number of chips."
+
+  "Adding a negative number of chips to a stack" should "generate an exception" in {
+    val stack = Stack(1)
+    val toAdd = -1.0
+    the[RuntimeException] thrownBy stack.add(toAdd).get should have message addErrorMessage(toAdd)
+  }
+
+  "Adding a negative number to a pot" should "generate an exception" in {
+    val pot = Pot(1)
+    val toRem = -1.0
+    the[RuntimeException] thrownBy pot.add(toRem).get should have message addErrorMessage(toRem)
+  }
+
+  def remErrorMessage(amt: Double) = "Cannot remove " + amt + " chips. Must remove a positive number of chips."
+
+  "Removing a negative number of chips from a stack" should "generate an exception" in {
+    val stack = Stack(1)
+    val toRem = -1.0
+    the[RuntimeException] thrownBy stack.rem(toRem).get should have message remErrorMessage(toRem)
+  }
+
 }
