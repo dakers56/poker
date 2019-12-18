@@ -7,15 +7,15 @@ class ChipsTest extends FlatSpec with Matchers {
   "A stack" should "be an instance of Chips with the ability to add and remove chips from it" in {
     val stack = Stack(1)
     stack shouldBe a[Chips]
-    stack shouldBe a[Add]
-    stack shouldBe a[Remove]
+    stack shouldBe a[Add[Stack]]
+    stack shouldBe a[Remove[Stack]]
   }
 
   "A pot" should "be an instance of Chips with the ability to add chips, but not remove chips from it" in {
     val pot = Pot(1)
     pot shouldBe a[Chips]
-    pot shouldBe a[Add]
-    pot should not be a[Remove]
+    pot shouldBe a[Add[Stack]]
+    pot should not be a[Remove[Stack]]
   }
 
   val initialStackSize = 100.1
