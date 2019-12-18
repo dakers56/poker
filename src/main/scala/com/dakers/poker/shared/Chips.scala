@@ -5,31 +5,35 @@ import scala.util.Try
 /**
  * Represents a pile of chips. Used for a player's stack and the hand's pot.
  */
-case class Chips(amt: Double)
+class Chips(val amt: Double)
+
+object Chips {
+  def apply(amt: Double): Chips = new Chips(amt)
+}
 
 /**
  * Represents a player's stack. A stack needs to have chips added and removed from it as players bet and win pots.
  */
-object Stack {
-  type Stack = Chips with Add with Remove
+class Stack(amt: Double) extends Chips(amt) with Add with Remove
 
-  def apply(amt: Double): Stack = new Chips(amt) with Add with Remove
+object Stack {
+  def apply(amt: Double): Stack = new Stack(amt)
 }
 
 /**
  * Represents the pot in a game. Never needs to remove chips because chips will only be added when bets are complete.
  * Otherwise, the bet is illegal.
  */
-object Pot {
-  type Pot = Chips with Add
+class Pot(amt: Double) extends Chips(amt) with Add
 
-  def apply(amt: Double): Pot = new Chips(amt) with Add
+object Pot {
+  def apply(amt: Double): Pot = new Pot(amt)
 }
 
 /**
  * Adds given amount to a [[Chips]] instance.
  */
-sealed trait Add {
+trait Add {
   this: Chips =>
   def add(toAdd: Double): Try[Chips] = {
     if (toAdd < 0) {
@@ -42,7 +46,7 @@ sealed trait Add {
 /**
  * Removes given amount from a [[Chips]] instance.
  */
-sealed trait Remove {
+trait Remove {
   this: Chips =>
   def rem(toRem: Double): Try[Chips] = {
     if (toRem < 0) {

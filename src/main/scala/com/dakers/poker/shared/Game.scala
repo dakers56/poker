@@ -1,10 +1,10 @@
 package com.dakers.poker.shared
 
-import com.dakers.poker.shared.Pot.Pot
-import com.dakers.poker.shared.Stack.Stack
-
 abstract class Game {
   def players: Seq[Player]
+
+  def pot: Pot
+
 }
 
 

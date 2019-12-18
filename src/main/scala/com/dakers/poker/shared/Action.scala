@@ -2,29 +2,32 @@ package com.dakers.poker.shared
 
 trait Action
 
-///**
-// * Represents a bet made by a player.
-// *
-// * @param amount size of bet
-// */
-//case class Bet(amount: Double, implicit val player: PlayerWithStack, implicit val game: Game) extends Action
-//
-///**
-// * Represents a check by a player. Object because a "check" has no state.
-// */
-//case class Check(implicit val player: PlayerWithStack, implicit val game: Game) extends Action
-//
-///**
-// * Represents a fold by a player. Object because a "fold" has no state.
-// */
-//case class Fold(implicit val player: PlayerWithStack, implicit val game: Game) extends Action
+case class Bet(amt: Double, stack: Stack, pot: Pot) extends Action
+
+case object Check extends Action
+
+case object Fold extends Action
+
+abstract class ActionRules {
+  def isAllowed(action: Action): Boolean
+}
+
+class BettingResult(stack: Stack, pot: Pot)
+
+object BettingResult {}
+
+class BetNotAllowedException(msg: String) extends RuntimeException(msg)
+
+class BettingManager(rules: ActionRules) {
+//  def bet(bet: Bet): BettingResult = {
+//    if (!rules.isAllowed(bet)) {
+//      throw new BetNotAllowedException("Bet " + bet + " was not allowed.")
+//    }
+//    val betAmt = bet.amt
+//    val newStack = bet.stack.rem(betAmt)
+//    val newPot = bet.pot.add(betAmt)
+//    BettingResult(newStack.get, newPot.get)
+//  }
 
 
-trait BettingActions {
-  this: Player =>
-  def bet(amount: Double)(implicit game: Game): (PlayerWithStack, Game)
-
-  def check(implicit game: Game): (PlayerWithStack, Game)
-
-  def fold(implicit game: Game): (PlayerWithStack, Game)
 }
