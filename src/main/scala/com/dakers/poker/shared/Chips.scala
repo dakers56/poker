@@ -14,7 +14,9 @@ object Chips {
 /**
  * Represents a player's stack. A stack needs to have chips added and removed from it as players bet and win pots.
  */
-class Stack(amt: Double) extends Chips(amt) with Add[Stack] with Remove[Stack] {
+class Stack(amt: Double) extends Chips(amt) with Add with Remove {
+  type T = Stack
+
   override def add(toAdd: Double): Try[Stack] = {
     if (!canAdd(toAdd)) {
       throw new RuntimeException("Cannot add " + toAdd + " chips. Must add a positive number of chips.")
@@ -38,8 +40,10 @@ object Stack {
  * Represents the pot in a game. Never needs to remove chips because chips will only be added when bets are complete.
  * Otherwise, the bet is illegal.
  */
-class Pot(amt: Double) extends Chips(amt) with Add[Pot] {
-  override def add(toAdd: Double): Try[Pot] = {
+class Pot(amt: Double) extends Chips(amt) with Add {
+  type T = Pot
+
+  override def add(toAdd: Double): Try[T] = {
     if (!canAdd(toAdd)) {
       throw new RuntimeException("Cannot add " + toAdd + " chips. Must add a positive number of chips.")
     }
@@ -54,7 +58,9 @@ object Pot {
 /**
  * Adds given amount to a [[Chips]] instance.
  */
-trait Add[T <: Chips] {
+trait Add {
+  type T <: Chips
+
   def add(toAdd: Double): Try[T]
 
   def canAdd(toAdd: Double) = toAdd > 0
@@ -63,7 +69,9 @@ trait Add[T <: Chips] {
 /**
  * Removes given amount from a [[Chips]] instance.
  */
-trait Remove[T <: Chips] {
+trait Remove {
+  type T <: Chips
+
   def rem(toRem: Double): Try[T]
 
   def canRem(toAdd: Double) = toAdd > 0
