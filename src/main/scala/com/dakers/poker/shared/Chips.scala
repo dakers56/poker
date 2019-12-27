@@ -43,7 +43,7 @@ object Stack {
 class Pot(amt: Double) extends Chips(amt) with Add {
   type T = Pot
 
-  override def add(toAdd: Double): Try[T] = {
+  override def add(toAdd: Double): Try[Pot] = {
     if (!canAdd(toAdd)) {
       throw new RuntimeException("Cannot add " + toAdd + " chips. Must add a positive number of chips.")
     }
