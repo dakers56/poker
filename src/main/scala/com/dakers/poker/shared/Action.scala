@@ -32,15 +32,6 @@ case object Check extends Action
 case object Fold extends Action
 
 
-
-/**
- * Encapsulates the reason for a bet failing.
- *
- * @param bet           the failed bet
- * @param failureReason string describing why the bet failed. For instance, a player can not make a bet which is larger than the size of their stack.
- */
-class BetFailureReason(bet: Bet, val failureReason: String)
-
 /**
  * Represents aspects of the game that change after a bet. Whenever a bet is allowed, the player's stack and the hand's pot need
  * to be updated.

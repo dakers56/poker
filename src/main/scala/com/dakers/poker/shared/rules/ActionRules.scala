@@ -1,6 +1,6 @@
 package com.dakers.poker.shared.rules
 
-import com.dakers.poker.shared.{Action, BetFailureReason}
+import com.dakers.poker.shared.{Action, Bet}
 
 /**
  * Represents the rules governing subclasses of [[Action]]. Determines whether a given [[Action]] is allowed, and if not,
@@ -15,3 +15,11 @@ abstract class ActionRules {
    */
   def failureReason(action: Action): Option[BetFailureReason]
 }
+
+/**
+ * Encapsulates the reason for a bet failing.
+ *
+ * @param bet           the failed bet
+ * @param failureReason string describing why the bet failed. For instance, a player can not make a bet which is larger than the size of their stack.
+ */
+class BetFailureReason(bet: Bet, val failureReason: String)
