@@ -1,5 +1,6 @@
 package com.dakers.poker.shared
 
+import com.dakers.poker.shared.rules.ActionRules
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import org.scalatestplus.mockito.MockitoSugar
 import org.mockito.Mockito._
