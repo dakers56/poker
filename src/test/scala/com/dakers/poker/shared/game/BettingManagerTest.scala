@@ -1,5 +1,6 @@
 package com.dakers.poker.shared
 
+import com.dakers.poker.shared.action.Bet
 import com.dakers.poker.shared.game.{BetNotAllowedException, BettingManager, BettingResult}
 import com.dakers.poker.shared.rules.{ActionRules, BetFailureReason, BettingContext}
 import org.mockito.Mockito._

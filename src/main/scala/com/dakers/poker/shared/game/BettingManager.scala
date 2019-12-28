@@ -1,7 +1,8 @@
 package com.dakers.poker.shared.game
 
+import com.dakers.poker.shared.action.Bet
 import com.dakers.poker.shared.rules.{ActionRules, BettingContext}
-import com.dakers.poker.shared.{Bet, Pot, Stack}
+import com.dakers.poker.shared.{Pot, Stack}
 
 import scala.util.Try
 

@@ -1,6 +1,7 @@
 package com.dakers.poker.shared.rules
 
-import com.dakers.poker.shared.{Action, Bet}
+import com.dakers.poker.shared.Bet
+import com.dakers.poker.shared.action.{Action, Bet}
 
 /**
  * Represents the rules governing subclasses of [[Action]]. Determines whether a given [[Action]] is allowed, and if not,

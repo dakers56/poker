@@ -1,4 +1,4 @@
-package com.dakers.poker.shared
+package com.dakers.poker.shared.action
 
 /**
  * Base trait for actions that a player may take, such as betting, checking or folding.
