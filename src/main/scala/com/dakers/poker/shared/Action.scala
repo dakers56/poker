@@ -1,9 +1,5 @@
 package com.dakers.poker.shared
 
-import com.dakers.poker.shared.rules.ActionRules
-
-import scala.util.Try
-
 /**
  * Base trait for actions that a player may take, such as betting, checking or folding.
  * Using a marker trait allows for the API signatures to be simpler and more extensible.
