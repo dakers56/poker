@@ -8,7 +8,7 @@ import org.mockito.Mockito._
 
 import scala.util.Failure
 
-class ActionTest extends FlatSpec with Matchers with BeforeAndAfter with MockitoSugar {
+class BettingManagerTest extends FlatSpec with Matchers with BeforeAndAfter with MockitoSugar {
 
   "A BettingManager" should "return a failure on an invalid bet" in {
     val failMsg = "Bet failed."
