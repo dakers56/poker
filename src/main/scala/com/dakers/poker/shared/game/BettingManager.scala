@@ -1,7 +1,7 @@
 package com.dakers.poker.shared.game
 
+import com.dakers.poker.shared.rules.{ActionRules, BettingContext}
 import com.dakers.poker.shared.{Bet, Pot, Stack}
-import com.dakers.poker.shared.rules.ActionRules
 
 import scala.util.Try
 
@@ -46,14 +46,15 @@ class BettingManager(rules: ActionRules) {
    * game appropriately.
    *
    * For instance, if someone attempts to bet more than is in their stack, an instance of [[scala.util.Failure]] would be returned.
-   * A similar result would ensure if someone tried to bet less than the big blind in NLHE, or more than the pot in PLO.
+   * A similar result would ensue if someone tried to bet less than the big blind in NLHE, or more than the pot in PLO.
    *
    * See [[BettingResult]] for more information.
    *
    * @param bet [[Bet]] to validate
+   * @param bettingContext contains information needed to validate the bet. See [[BettingContext]].
    * @return [[scala.util.Success]] containing [[BettingResult]] if successful, otherwise [[scala.util.Failure]] wrapping the exception thrown
    */
-  final def bet(bet: Bet): Try[BettingResult] = {
+  final def bet(bet: Bet)(implicit bettingContext: BettingContext): Try[BettingResult] = {
     Try(betHelper(bet))
   }
 
@@ -61,16 +62,17 @@ class BettingManager(rules: ActionRules) {
    * Helper method used so that a [[Try]] can wrap the exception thrown when the bet is not valid.
    *
    * @param bet [[Bet]] to be validated
+   * @param bettingContext contains information needed to validate the bet. See [[BettingContext]].
    * @return See [[BettingResult]]
    */
-  private def betHelper(bet: Bet): BettingResult = {
+  private def betHelper(bet: Bet)(implicit bettingContext: BettingContext): BettingResult = {
     val failureReason = rules.failureReason(bet)
     if (failureReason.isDefined) {
       throw new BetNotAllowedException(failureReason.get.failureReason)
     }
     val betAmt = bet.amt
-    val newStack = bet.stack.rem(betAmt)
-    val newPot = bet.pot.add(betAmt)
+    val newStack = bettingContext.stack.rem(betAmt)
+    val newPot = bettingContext.pot.add(betAmt)
     BettingResult(newStack.get, newPot.get)
   }
 }

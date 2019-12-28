@@ -1,10 +1,10 @@
 package com.dakers.poker.shared
 
 import com.dakers.poker.shared.game.{BetNotAllowedException, BettingManager, BettingResult}
-import com.dakers.poker.shared.rules.{ActionRules, BetFailureReason}
+import com.dakers.poker.shared.rules.{ActionRules, BetFailureReason, BettingContext}
+import org.mockito.Mockito._
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import org.scalatestplus.mockito.MockitoSugar
-import org.mockito.Mockito._
 
 import scala.util.Failure
 
@@ -17,6 +17,7 @@ class BettingManagerTest extends FlatSpec with Matchers with BeforeAndAfter with
 
     val rules = mock[ActionRules]
     val badBet = mock[Bet]
+    implicit val bettingContext = mock[BettingContext]
     when(rules.failureReason(badBet)).thenReturn(Some(betFailureReason))
 
 
@@ -28,7 +29,7 @@ class BettingManagerTest extends FlatSpec with Matchers with BeforeAndAfter with
     the[BetNotAllowedException] thrownBy result.get should have message failMsg
   }
 
-  "A BettingManager"  should "return a result with the stack set to the original amount less the bet, and the pot set to the original amount plus the bet" in {
+  "A BettingManager" should "return a result with the stack set to the original amount less the bet, and the pot set to the original amount plus the bet" in {
     val origStackAmt = 100
     val origPotAmt = 200
 
@@ -36,9 +37,12 @@ class BettingManagerTest extends FlatSpec with Matchers with BeforeAndAfter with
     val origPot = Pot(origPotAmt)
 
     val betAmt = 50
-    val bet = Bet(betAmt, origStack, origPot)
+    val bet = Bet(betAmt)
 
     val rules = mock[ActionRules]
+    implicit val bettingContext = mock[BettingContext]
+    when(bettingContext.stack).thenReturn(origStack)
+    when(bettingContext.pot).thenReturn(origPot)
     when(rules.failureReason(bet)).thenReturn(Option.empty)
 
     val bettingManager = BettingManager(rules)
@@ -58,7 +62,11 @@ class BettingManagerTest extends FlatSpec with Matchers with BeforeAndAfter with
     val badStack = mock[Stack]
     val goodPot = mock[Pot]
 
-    val bet = Bet(1, badStack, goodPot)
+    implicit val bettingContext = mock[BettingContext]
+    when(bettingContext.stack).thenReturn(badStack)
+    when(bettingContext.pot).thenReturn(goodPot)
+
+    val bet = Bet(1)
 
     val rules = mock[ActionRules]
     when(rules.failureReason(bet)).thenReturn(Option.empty)
@@ -75,7 +83,11 @@ class BettingManagerTest extends FlatSpec with Matchers with BeforeAndAfter with
     val goodStack = mock[Stack]
     val badPot = mock[Pot]
 
-    val bet = Bet(1, goodStack, badPot)
+    implicit val bettingContext = mock[BettingContext]
+    when(bettingContext.stack).thenReturn(goodStack)
+    when(bettingContext.pot).thenReturn(badPot)
+
+    val bet = Bet(1)
 
     val rules = mock[ActionRules]
     when(rules.failureReason(bet)).thenReturn(Option.empty)

@@ -8,14 +8,10 @@ trait Action
 
 /**
  * Represents a bet from a player.
- * A stack and pot are required because if the bet is allowed, then the stack and pot need to be updated. See [[BettingResult]]
- * for more.
  *
- * @param amt   the size of the bet
- * @param stack the [[Stack]] of the player making the bet
- * @param pot   the current [[Pot]] in the hand
+ * @param amt the size of the bet
  */
-case class Bet(amt: Double, stack: Stack, pot: Pot) extends Action
+case class Bet(amt: Double) extends Action
 
 /**
  * Represents a check by the player.

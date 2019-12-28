@@ -13,7 +13,7 @@ abstract class ActionRules {
    * @param action The [[Action]] to evaluate
    * @return [[None]] if the bet is allowed, or if the bet is not allowed, an [[Option]] containing the reason why it failed.
    */
-  def failureReason(action: Action): Option[BetFailureReason]
+  def failureReason(action: Action)(implicit actionContext: ActionContext): Option[BetFailureReason]
 }
 
 /**
