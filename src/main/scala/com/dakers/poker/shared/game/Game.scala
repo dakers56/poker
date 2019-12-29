@@ -43,3 +43,10 @@ trait Betting {
 
   implicit def bettingContext(): BettingContext
 }
+
+/**
+ * Trait that allows a game to have players.
+ */
+trait Players {
+  def players: Iterable[Players]
+}
