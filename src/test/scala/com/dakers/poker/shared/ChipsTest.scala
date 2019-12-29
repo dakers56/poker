@@ -1,5 +1,6 @@
 package com.dakers.poker.shared
 
+import com.dakers.poker.shared.misc.{Add, Chips, Pot, Remove, Stack}
 import org.scalatest.{FlatSpec, Matchers}
 
 class ChipsTest extends FlatSpec with Matchers {

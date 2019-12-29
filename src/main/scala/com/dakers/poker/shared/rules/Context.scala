@@ -1,6 +1,6 @@
 package com.dakers.poker.shared.rules
 
-import com.dakers.poker.shared.{Pot, Stack}
+import com.dakers.poker.shared.misc.{Pot, Stack}
 
 /**
  * Represents the additional information needed to validate and execute an action.

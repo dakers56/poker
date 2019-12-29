@@ -1,4 +1,4 @@
-package com.dakers.poker.shared
+package com.dakers.poker.shared.misc
 
 /**
  * Bridges the gap between actual games - where a "full" hand or round is germane - and simulations, which need to consider

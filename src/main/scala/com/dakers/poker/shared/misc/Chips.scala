@@ -1,4 +1,4 @@
-package com.dakers.poker.shared
+package com.dakers.poker.shared.misc
 
 import scala.util.Try
 
