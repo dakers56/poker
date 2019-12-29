@@ -1,5 +1,6 @@
-package com.dakers.poker.shared
+package com.dakers.poker.shared.player
 
+import com.dakers.poker.shared.Stack
 import com.dakers.poker.shared.hand.Hand
 
 /**

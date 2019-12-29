@@ -1,6 +1,6 @@
 package com.dakers.poker.shared.game
 
-import com.dakers.poker.shared.Player
+import com.dakers.poker.shared.player.Player
 import com.dakers.poker.shared.rules.{BettingContext, Rules}
 
 /**
