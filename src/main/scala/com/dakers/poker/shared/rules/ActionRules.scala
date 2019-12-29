@@ -1,6 +1,6 @@
 package com.dakers.poker.shared.rules
 
-import com.dakers.poker.shared.Bet
+
 import com.dakers.poker.shared.action.{Action, Bet}
 
 /**
