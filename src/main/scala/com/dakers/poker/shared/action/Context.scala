@@ -1,4 +1,4 @@
-package com.dakers.poker.shared.rules
+package com.dakers.poker.shared.action
 
 import com.dakers.poker.shared.misc.{Pot, Stack}
 

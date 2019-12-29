@@ -1,7 +1,8 @@
 package com.dakers.poker.shared.game
 
+import com.dakers.poker.shared.action.BettingContext
 import com.dakers.poker.shared.player.Player
-import com.dakers.poker.shared.rules.{BettingContext, Rules}
+import com.dakers.poker.shared.rules.Rules
 
 /**
  * Base class for all poker games. Minimally, the rules of the game must be defined.

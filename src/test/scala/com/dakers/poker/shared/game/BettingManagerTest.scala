@@ -1,9 +1,9 @@
 package com.dakers.poker.shared
 
-import com.dakers.poker.shared.action.Bet
+import com.dakers.poker.shared.action.{Bet, BettingContext}
 import com.dakers.poker.shared.game.{BetNotAllowedException, BettingManager, BettingResult}
 import com.dakers.poker.shared.misc.{Pot, Stack}
-import com.dakers.poker.shared.rules.{ActionRules, BetFailureReason, BettingContext}
+import com.dakers.poker.shared.rules.{ActionRules, BetFailureReason}
 import org.mockito.Mockito._
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import org.scalatestplus.mockito.MockitoSugar
