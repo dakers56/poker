@@ -1,4 +1,4 @@
-package com.dakers.poker.shared
+package com.dakers.poker.shared.hand
 
 import com.dakers.cards.Card
 

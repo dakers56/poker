@@ -1,5 +1,7 @@
 package com.dakers.poker.shared
 
+import com.dakers.poker.shared.hand.Hand
+
 /**
  * Base class for players of an arbitrary game. Players always have some sort of hand.
  */
