@@ -51,7 +51,7 @@ class BettingManager(rules: ActionRules) {
    *
    * See [[BettingResult]] for more information.
    *
-   * @param bet [[Bet]] to validate
+   * @param bet            [[Bet]] to validate
    * @param bettingContext contains information needed to validate the bet. See [[BettingContext]].
    * @return [[scala.util.Success]] containing [[BettingResult]] if successful, otherwise [[scala.util.Failure]] wrapping the exception thrown
    */
@@ -62,7 +62,7 @@ class BettingManager(rules: ActionRules) {
   /**
    * Helper method used so that a [[Try]] can wrap the exception thrown when the bet is not valid.
    *
-   * @param bet [[Bet]] to be validated
+   * @param bet            [[Bet]] to be validated
    * @param bettingContext contains information needed to validate the bet. See [[BettingContext]].
    * @return See [[BettingResult]]
    */
