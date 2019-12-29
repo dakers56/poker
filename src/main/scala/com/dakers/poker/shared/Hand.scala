@@ -4,7 +4,7 @@ import com.dakers.cards.Card
 
 /** Base class for hands. */
 abstract class Hand {
-  def cards: Set[Card]
+  def cards: Iterable[Card]
 }
 
 /**
